@@ -1,0 +1,23 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Rock Salt", cursive;
+}
+
+.jumbotron {
+  background-image: url("img/rave.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  text-align: center;
+  position: relative;
+  background-size: 100% auto;
+  min-width: 100%;
+  font-family: "Rock Salt", cursive;
+  color: #33ff33;
+}

@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>All Venues</h1>
+
+    <% if @venues.any?() %>
+  <ul>
+    <% @venues.each do |venue| %>
+      <li><a href='/venues/<%= venue.id %>'><%= venue.description() %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>No Venues Exist in this Musicless World</p>
+  <% end %>
+</div>

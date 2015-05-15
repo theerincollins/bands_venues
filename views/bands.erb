@@ -1,0 +1,14 @@
+
+<div class="container">
+  <h1>All Bands</h1>
+
+    <% if @bands.any?() %>
+  <ul>
+    <% @bands.each do |band| %>
+      <li><a href='/bands/<%= band.id %>'><%= band.name() %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>Add Bands</p>
+  <% end %>
+</div>

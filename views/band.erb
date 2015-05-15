@@ -1,0 +1,11 @@
+<div class="container">
+
+  <h1><%= @band.name() %></h1>
+  <h4>Genre: <%= @band.genre() %></h4>
+
+  <p><a role="button" href="/bands/<%= @band.id() %>/edit" class="btn btn-info">Update Band Info</a></p>
+
+  <form action="/bands/<%=@band.id %>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+  <p><button type="submit" class="btn btn-danger">Delete Band</button</p>
+</div>
