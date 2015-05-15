@@ -71,6 +71,20 @@ patch('/bands/gigs/:id') do
   redirect("/bands/".concat(@band.id.to_s))
 end
 
+patch('/venues/gigs/:id') do
+  @venue = Venue.find(params.fetch("id").to_i)
+  if params.fetch("band") == ""
+    name = params.fetch("name")
+    genre = params.fetch("genre")
+    new_band = Band.create(name: name, genre: genre, venue_ids: [@venue.id])
+  else
+    band_id = params.fetch("band").to_i
+    band = Band.find(band_id)
+    @venue.bands.push(band)
+  end
+  redirect("/venues/".concat(@venue.id.to_s))
+end
+
 delete('/bands/:id/delete') do
   band = Band.find(params.fetch("id").to_i)
   band.delete()
@@ -100,5 +114,6 @@ end
 
 get('/venues/:id') do
   @venue = Venue.find(params.fetch("id").to_i)
+  @bands = Band.all
   erb(:venue)
 end

@@ -3,4 +3,12 @@ class Venue < ActiveRecord::Base
 
   validates(:description, :presence => true)
   validates(:address, :presence => true)
+
+  before_save(:capitalize_description)
+
+  private
+
+  def capitalize_description
+    self.description = (description().capitalize())
+  end
 end

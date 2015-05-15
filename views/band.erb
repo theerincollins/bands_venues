@@ -2,14 +2,15 @@
 
   <h1><%= @band.name() %></h1>
   <h4>Genre: <%= @band.genre() %></h4>
-
+<br>
   <p><a role="button" href="/bands/<%= @band.id() %>/edit" class="btn btn-info">Update Band Info</a></p>
 
   <form action="/bands/<%=@band.id %>/delete" method="post">
     <input type="hidden" name="_method" value="delete">
   <p><button type="submit" class="btn btn-danger">Delete Band</button></p>
 </form>
-
+<br><br>
+<h5>Upcoming Shows</h5>
 <% if @band.venues.any? %>
 <ul>
   <% @band.venues.each do |venue| %>
@@ -20,7 +21,9 @@
   <p>This Band is Not Playing at a Venue Near You, or Anywhere Really</p>
 <% end %>
 
+<br><br>
 <h4>Add a Gig for <%= @band.name() %></h4>
+
 
 <form action="/bands/gigs/<%=@band.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -34,7 +37,7 @@
       <% end %>
     </select>
   <% end %>
-
+  <p>Or Add a new venue</p>
   <div class="form-group">
     <input type="text" name="description" id="description" class="form-control" placeholder="Venue Name">
   </div>

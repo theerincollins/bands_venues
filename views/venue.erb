@@ -15,7 +15,31 @@
       <% else %>
         <p>This Venue Sucks</p>
       <% end %>
-
+<br>
       <h4>Add a Gig at <%= @venue.description() %></h4>
 
+      <form action="/venues/gigs/<%=@venue.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+
+        <% if @bands.any? %>
+        <label for="band">Select and Existing Band</label>
+          <select name="band" id="band" type="text">
+            <option value=""></option>
+            <% @bands.each do |band| %>
+            <option value="<%= band.id %>"><%= band.name %></option>
+            <% end %>
+          </select>
+        <% end %>
+<p>Or Add a new band</p>
+        <div class="form-group">
+          <div class="form-group">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Band Name">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="genre" id="genre" class="form-control" placeholder="Genre">
+          </div>
+
+      <button type="submit" class="btn btn-success">Add Gig</button>
+      </form>
 </div>

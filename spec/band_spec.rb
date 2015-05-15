@@ -13,4 +13,10 @@ describe Band do
     band = Band.new(name: "")
     expect(band.save()).to(eq(false))
   end
+
+  it("converts a band name to begin with a capital letter") do
+    band = Band.create(name: "the Fairy Fun Fits", genre: "Screamo")
+    expect(band.name).to(eq("The fairy fun fits"))
+  end
+
 end
