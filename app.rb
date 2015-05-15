@@ -14,11 +14,11 @@ end
 post('/bands/add') do
  name = params.fetch("name")
  genre = params.fetch("genre")
- new_band = Band.new(name: name, genre: genre)
- if new_band.save()
+ @new_band = Band.new(name: name, genre: genre)
+ if @new_band.save()
    redirect("/bands")
  else
-   erb(:band_form)
+   erb(:errors1)
  end
 end
 
@@ -29,6 +29,7 @@ end
 
 get('/bands/:id') do
   @band = Band.find(params.fetch("id").to_i)
+  @venues = Venue.all
   erb(:band)
 end
 
@@ -56,6 +57,20 @@ patch('/bands/update/:id') do
   redirect("/bands/".concat(band_id.to_s))
 end
 
+patch('/bands/gigs/:id') do
+  @band = Band.find(params.fetch("id").to_i)
+  if params.fetch("venue") == ""
+    description = params.fetch("description")
+    address = params.fetch("address")
+    new_venue = Venue.create(description: description, address: address, band_ids: [@band.id])
+  else
+    venue_id = params.fetch("venue").to_i
+    venue = Venue.find(venue_id)
+    @band.venues.push(venue)
+  end
+  redirect("/bands/".concat(@band.id.to_s))
+end
+
 delete('/bands/:id/delete') do
   band = Band.find(params.fetch("id").to_i)
   band.delete()
@@ -70,11 +85,11 @@ end
 post('/venues/add') do
  description = params.fetch("description")
  address = params.fetch("address")
- new_venue = Venue.new(description: description, address: address)
- if new_venue.save()
+ @new_venue = Venue.new(description: description, address: address)
+ if @new_venue.save()
    redirect("/venues")
  else
-   erb(:venue_form)
+   erb(:errors2)
  end
 end
 

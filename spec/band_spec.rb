@@ -8,4 +8,9 @@ describe Band do
       band = Band.create(name: "The Fairy Fun Fits", genre: "Screamo", venue_ids: [venue1.id(), venue2.id()])
     end
   end
+
+  it("validates presence of a band name") do
+    band = Band.new(name: "")
+    expect(band.save()).to(eq(false))
+  end
 end

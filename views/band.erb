@@ -7,5 +7,44 @@
 
   <form action="/bands/<%=@band.id %>/delete" method="post">
     <input type="hidden" name="_method" value="delete">
-  <p><button type="submit" class="btn btn-danger">Delete Band</button</p>
+  <p><button type="submit" class="btn btn-danger">Delete Band</button></p>
+</form>
+
+<% if @band.venues.any? %>
+<ul>
+  <% @band.venues.each do |venue| %>
+    <li><%= venue.description %>  <%= venue.address %></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>This Band is Not Playing at a Venue Near You, or Anywhere Really</p>
+<% end %>
+
+<h4>Add a Gig for <%= @band.name() %></h4>
+
+<form action="/bands/gigs/<%=@band.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <% if @venues.any? %>
+  <label for="venue">Select and Existing Venue</label>
+    <select name="venue" id="venue" type="text">
+      <option value=""></option>
+      <% @venues.each do |venue| %>
+      <option value="<%= venue.id %>"><%= venue.description %></option>
+      <% end %>
+    </select>
+  <% end %>
+
+  <div class="form-group">
+    <input type="text" name="description" id="description" class="form-control" placeholder="Venue Name">
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="address" id="address" class="form-control" placeholder="Venue Address">
+  </div>
+
+<button type="submit" class="btn btn-success">Add Gig</button>
+</form>
+
+
 </div>

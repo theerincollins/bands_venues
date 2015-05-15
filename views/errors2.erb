@@ -1,0 +1,7 @@
+<h1>Uh oh, you screwed up</h1>
+
+<ul>
+  <% @new_venue.errors().full_messages().each() do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>

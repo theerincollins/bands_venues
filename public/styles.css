@@ -21,3 +21,13 @@ body {
   font-family: "Rock Salt", cursive;
   color: #33ff33;
 }
+
+.home-buttons {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.all-venues-button {
+  background-color: #ff00ff;
+}

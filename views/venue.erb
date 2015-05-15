@@ -1,5 +1,21 @@
 <div class="container">
 
-  <h1><%= @venue.description() %></h1>
-  <h4>Address: <%= @venue.address() %></h4>
+      <h1><%= @venue.description() %></h1>
+      <h4>Address: <%= @venue.address() %></h4>
+
+
+<br><br>
+      <h5>Upcoming Shows</h5>
+      <% if @venue.bands.any? %>
+      <ul>
+        <% @venue.bands.each do |band| %>
+          <li><%= band.name %>  <p><%= band.genre %></li></p>
+        <% end %>
+      </ul>
+      <% else %>
+        <p>This Venue Sucks</p>
+      <% end %>
+
+      <h4>Add a Gig at <%= @venue.description() %></h4>
+
 </div>
